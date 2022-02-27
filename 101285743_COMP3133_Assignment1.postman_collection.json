@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "7980186e-2b10-43aa-a731-88e52401ae20",
+		"name": "101285743_COMP3133_Assignment1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Register New User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{createUser(userInput:{username:\"John\",firstname:\"John\",lastname:\"Doe\",email:\"JohnDoe@gmail.com\",password:\"John@555\",type:\"admin\"}){ username firstname }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Login User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{login(username:\"John\",password:\"John@555\"){  token }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Create New Listing",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjFhNzI2ODIwNGVkZDBhNGM2ZTE5ZmYiLCJlbWFpbCI6Im1pc3RyeWFzYXVteWFAZ21haWwuY29tIiwidXNlcm5hbWUiOiJTYXVteWEiLCJyb2xlIjoidXNlciIsImlhdCI6MTY0NTkwMDgxMywiZXhwIjoxNjQ1OTA0NDEzfQ.lChi5diSpEJ_KLNhSp14QqFg4NK-Azq_qkCwXZ3VemA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{createListing(listingInput:{listing_id:\"L001\",listing_title:\"Sea face home for rent\",description:\"I would like to rent a home which is basically sea faced.\",street:\"55 Davelayne rd\",city:\"Toronto\",postal_code:\"M9M2A6\",price:500,email:\"mavanivishwa@gmail.com\",username:\"Vishwa\"}){username listing_title }}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. View all listings created by Admin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjFhYmQ3NzZmNWJmNDI0MDg5MThiZTgiLCJlbWFpbCI6IkpvaG5Eb2VAZ21haWwuY29tIiwidXNlcm5hbWUiOiJKb2huIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjQ1OTE5Njk3LCJleHAiOjE2NDU5MjMyOTd9.zwl_OS0P00GYhUTQpMcx8Jt8khC_ANWP20wJ8dyfSUw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n    getAdminListing{\r\n        listing_id\r\n        listing_title\r\n        description\r\n        street\r\n        city\r\n        postal_code\r\n        price\r\n        email\r\n        username\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.  Book listings as a User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjFhYmQ3NzZmNWJmNDI0MDg5MThiZTgiLCJlbWFpbCI6IkpvaG5Eb2VAZ21haWwuY29tIiwidXNlcm5hbWUiOiJKb2huIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjQ1OTE5Njk3LCJleHAiOjE2NDU5MjMyOTd9.zwl_OS0P00GYhUTQpMcx8Jt8khC_ANWP20wJ8dyfSUw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\r\n  createBooking(bookingInput:{listing_id:\"L001\",booking_id:\"B001\",booking_date:\"01-24-2022\",booking_start:\"01-25-2022\",booking_end:\"01-30-2022\",username:\"Saumya\"}){\r\n    username\r\n    listing_id\r\n  }\r\n  \r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. Search Listing by Name",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{getListingByTitle(title:\"Sea face home for rent\"){listing_id listing_title description city  price  username }}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. Search Listing by City",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{ getListingByCity(city:\"Toronto\"){listing_id listing_title  description city price username }}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8. List all User bookings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9. View all listing added by Admin user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
